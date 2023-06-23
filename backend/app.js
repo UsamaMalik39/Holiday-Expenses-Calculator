@@ -38,7 +38,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 var server = http.createServer(app);
-server.listen(3001, () => {
-  console.log(`Example app listening on port ${3001}`)
+server.listen(3000, () => {
+  console.log(`Example app listening on port ${3000}`)
 })
 module.exports = app;
