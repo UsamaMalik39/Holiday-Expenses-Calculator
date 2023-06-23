@@ -1,103 +1,137 @@
 <div class="jumbotron text-center">
-    <h1 class="display-5">
-      BUNK DEV TEST - Muhammad Usama - Holiday Expenses Calculator
-    </h1>
-  </div>
-  
-  <div class="container">
-    <div class="avatar-upload">
-        <div class="avatar-preview">
-          <div id="imagePreview" [style.backgroundImage]="'url('+ imageUrl +')'">
-          </div>
-        </div>
+  <h1 class="display-5">
+    BUNK DEV TEST - Muhammad Usama - Holiday Expenses Calculator
+  </h1>
+</div>
+
+<div class="container">
+  <div class="avatar-upload">
+    <div class="avatar-preview">
+      <div
+        id="imagePreview"
+        [style.backgroundImage]="'url(' + imageUrl + ')'"
+      ></div>
     </div>
-    <div class="row custom-wrapper">
-      <div class="col-md-8">
-  
-        <!-- Form starts -->
-        <form [formGroup]="formForExpenses">
-  
-        <div  formArrayName="arr">
-            <div class="group-gap" *ngFor="let singleRow of getexpensesArray.controls; let i = index" [formGroupName]="i">
-                
-              
-              <div class="expense-form">
-                <!--Name -->
-                <div class="mb-3">
-                  <label>
-                    Name</label>
-                  <input type="text" 
+  </div>
+  <div class="row custom-wrapper">
+    <div class="col-md-8">
+      <!-- Form starts -->
+      <form [formGroup]="formForExpenses">
+        <div formArrayName="arr">
+          <div
+            class="group-gap"
+            *ngFor="let singleRow of getexpensesArray.controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="expense-form">
+              <!--Name -->
+              <div class="mb-3">
+                <label> Name</label>
+                <input
+                  type="text"
                   #name
                   placeholder="Enter Name"
                   maxlength="20"
-                  (keydown.space)="name.value.trim()!=='' || $event.preventDefault()" 
-                  class="form-control" formControlName="name">
-                  <!-- error block -->
-                  <div class="invalid-feedback" *ngIf="submitted && singleRow.controls.name.errors?.required">
-                    <sup>*</sup>Name is required
-                  </div>
-                  <div class="invalid-feedback" *ngIf="submitted && singleRow.controls.name.errors?.minlength">
-                    <sup>*</sup>Name must be 2 characters long
-                  </div>
-                  <div class="invalid-feedback" *ngIf="submitted && singleRow.controls.name.errors?.pattern">
-                    <sup>*</sup>No special charcter or numbers allowed
-                  </div>
+                  (keydown.space)="
+                    name.value.trim() !== '' || $event.preventDefault()
+                  "
+                  class="form-control"
+                  formControlName="name"
+                />
+                <!-- error block -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && singleRow.controls.name.errors?.required"
+                >
+                  <sup>*</sup>Name is required
                 </div>
-                <!--Expense -->
-                <div class="mb-3">
-                  <label>
-                    Expense (£)</label>
-                  <input type="number" 
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && singleRow.controls.name.errors?.minlength"
+                >
+                  <sup>*</sup>Name must be 2 characters long
+                </div>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && singleRow.controls.name.errors?.pattern"
+                >
+                  <sup>*</sup>No special charcter or numbers allowed
+                </div>
+              </div>
+              <!--Expense -->
+              <div class="mb-3">
+                <label> Expense (£)</label>
+                <input
+                  type="number"
                   placeholder="Enter Amount Paid"
-                  class="form-control"  formControlName="amount">
-                  <!-- error block -->
-                  <div class="invalid-feedback" *ngIf="submitted && singleRow.controls.amount.errors?.required">
-                    <sup>*</sup>Please enter amount
-                  </div>
-                  <div class="invalid-feedback" *ngIf="submitted && singleRow.controls.amount.errors?.min">
-                    <sup>*</sup>Minimum amount cannot be less than 1£
-                  </div>
+                  class="form-control"
+                  formControlName="amount"
+                />
+                <!-- error block -->
+                <div
+                  class="invalid-feedback"
+                  *ngIf="
+                    submitted && singleRow.controls.amount.errors?.required
+                  "
+                >
+                  <sup>*</sup>Please enter amount
                 </div>
-              </div>
-              <div class="group-gap"  *ngIf="i!=0">
-                <div class="mb-3">
-                  <button type="button" class="btn btn-sm btn-success mb-3 btn-block" (click)="deleteExpense(i)">Remove</button>
+                <div
+                  class="invalid-feedback"
+                  *ngIf="submitted && singleRow.controls.amount.errors?.min"
+                >
+                  <sup>*</sup>Minimum amount cannot be less than 1£
                 </div>
               </div>
             </div>
-        </div>
-          
-          
-        </form>
-        <!-- Form ends -->
-        <div class="bottomButtons">
-            <button type="submit" 
-            class="btn btn-danger btn-lg btn-block" 
-            (click)="addExpense()">+</button>
-            <!-- Submit Button -->
-            <button type="submit"
-            class="btn btn-danger btn-lg btn-block" 
-            (click)="onSubmit()">Settle Up</button>
-          
-        </div>
-        </div>
-        <div  class="col-md-4">
-            <h5 *ngIf="payouts.length>0" >PAYOUT DIVISIONS</h5>
-            <div *ngIf="payouts.length>0" >
-        
-                <div>
-                    <p>Total: {{summary.total}}£</p>
-                    <p>Share: {{summary.equalShare}}£</p>
-                </div>
-                <div *ngFor="let item of payouts">
-                    <p> {{item.owed | titlecase}} owes {{item.amount | number:'1.0-2'}} £ to {{ item.owes | titlecase }}  </p>
-                </div>
+            <div class="group-gap" *ngIf="i != 0">
+              <div class="mb-3">
+                <button
+                  type="button"
+                  class="btn btn-sm btn-success mb-3 btn-block"
+                  (click)="deleteExpense(i)"
+                >
+                  Remove
+                </button>
+              </div>
             </div>
+          </div>
         </div>
+      </form>
+      <!-- Form ends -->
+      <div class="bottomButtons">
+        <button
+          type="submit"
+          class="btn btn-danger btn-lg btn-block"
+          (click)="addExpense()"
+        >
+          +
+        </button>
+        <!-- Submit Button -->
+        <button
+          type="submit"
+          class="btn btn-danger btn-lg btn-block"
+          (click)="onSubmit()"
+        >
+          Settle Up
+        </button>
+      </div>
     </div>
-    
+    <div class="col-md-4">
+      <h5 *ngIf="payouts.length > 0">PAYOUT DIVISIONS</h5>
+      <div *ngIf="payouts.length > 0">
+        <div>
+          <p>Total: {{ summary.total }}£</p>
+          <p>Share: {{ summary.equalShare }}£</p>
+        </div>
+        <div *ngFor="let item of payouts">
+          <p>
+            {{ item.owed | titlecase }} owes
+            {{ item.amount | number : "1.0-2" }} £ to
+            {{ item.owes | titlecase }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-
-  
+</div>

@@ -1,8 +1,8 @@
 const controller = {};
-const calculatorService = require('../services/calculator.service')
+const calculatorService = require("../services/calculator.service");
 
 controller.calculateExpenses = async function (req, res, next) {
-    return calculatorService.calculateExpenses(req,res)
-}
+  return calculatorService.calculateExpenses(req, res);
+};
 
 module.exports = controller;
