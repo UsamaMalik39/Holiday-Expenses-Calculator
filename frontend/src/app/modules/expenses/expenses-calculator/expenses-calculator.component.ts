@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ExpensesCalculationService } from '../services/expenses-calculation.service';
+import { payouts } from 'src/app/models/payouts';
+import { summary } from 'src/app/models/summary';
 
 @Component({
   selector: 'app-expenses-calculator',
@@ -11,8 +13,8 @@ export class ExpensesCalculatorComponent implements OnInit {
   submitted = false;
   expensesArray: any = new FormArray([]);
   formForExpenses: any = null;
-  payouts: any = [];
-  summary: any = {};
+  payouts: payouts[] = [];
+  summary: summary = new summary();
   imageUrl: any = '../../../../assets/bunk.png';
   constructor(
     public _fb: FormBuilder,
